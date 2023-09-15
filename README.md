@@ -30,3 +30,5 @@ The User model has the following fields -
 3. email - Email Field
 4. password - String Field
 5. website - String Field
+
+Pick up the data from `data.json` file to perform CRUD operation.
