@@ -1,30 +1,20 @@
-To run the application, activate the virtual environment, install the requirements from the requirements.txt file and make changes to the `DATABASES` variable in the `django_postgres/setting.py` file.
+To run the application, you need [docker](https://docs.docker.com/get-docker/) installed in your system.
 
-```
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'YOUR_DATABASE',
-        'USER': 'YOUR_USER',
-        'PASSWORD': 'YOUR_PASSWORD',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-```
+Once docker is installed, run the following commands - ```docker-compose build``` and ```docker-compose up``` to start the server.
+The Django application container will be accessible at port 8000 and at url - `https://127.0.0.1:8000` whereas locally, PostgreSQL will be accessible at port 6000 and at port 5432 in the container.
 
-Run the commands - ```python3 manage.py makemigrations``` and ```python3 manage.py migrate```.
-To start server, run - ```python3 manage.py runserver```
-The API will be accessible at - `https://127.0.0.1:8000/user`
+To apply migrations, run the following commands - ```docker-compose exec web /bin/sh``` which opens a command input to the container and now run - ```python3 manage.py makemigrations``` and ```python3 manage.py migrate```.
 
-Make the following requests to the respective endpoints - 
+Make the following requests to the respective endpoints -  
+
 1. `GET /user/` - To get all the data at once.
 2. `GET /user/uuid/` - To get the data of any particular user.
 3. `POST /user/` - To create a new user.
 4. `PUT /user/uuid/` - To update an existing user.
 5. `DELETE /user/uuid/` - To delete an existing user.
 
-The User model has the following fields - 
+The User model has the following fields -  
+
 1. id - UUID Field
 2. name - String Field
 3. email - Email Field
