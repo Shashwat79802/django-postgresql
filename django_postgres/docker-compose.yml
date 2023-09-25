@@ -1,15 +1,6 @@
 version: '3'
 services:
-  # Django application service
-  web:
-    build: .
-    ports:
-      - "8000:8000"  # Map your Django app's port to the host machine
-    volumes:
-      - .:/app  # Mount the current directory into the container
-    depends_on:
-      - db  # Ensure the database container is started first
-  # PostgreSQL service
+
   db:
     image: postgres:latest
     environment:
