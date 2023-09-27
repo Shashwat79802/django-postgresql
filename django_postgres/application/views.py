@@ -12,37 +12,50 @@ import json
 def get_update_deleteUser(request, uuid: uuid4):
 
     if request.method == "GET":
-        data = UserSerializer(User.objects.get(id=uuid)).data
-        return Response(data)
-
-    if request.method == "PUT":
-        user = User.objects.get(id=uuid)
+        try:
+            data = UserSerializer(User.objects.get(id=uuid)).data
+            return Response(data)
+        except Exception as e:
+            return Response({"message": str(e)})
         
-        user.name=request.data['name']
-        user.email=request.data['email']
-        user.password=request.data['password']
-        user.website=request.data['website']
-        user.save()
+    if request.method == "PUT":
+        try:
+            user = User.objects.get(id=uuid)
+        
+            user.name=request.data['name']
+            user.email=request.data['email']
+            user.password=request.data['password']
+            user.website=request.data['website']
+            user.save()
 
-        return JsonResponse({"message": "User Updated!!"})
+            return JsonResponse({"message": "User Updated!!"})
+        except Exception as e:
+            return JsonResponse({"message": str(e)[2:-2]})
     
     if request.method == "DELETE":
-        User.objects.get(id=uuid).delete()
-        return JsonResponse({"message": "User Deleted!!"})
-
+        try:
+            User.objects.get(id=uuid).delete()
+            return JsonResponse({"message": "User Deleted!!"})
+        except Exception as e:
+            return JsonResponse({"message": str(e)[2:-2]})
+        
 @api_view(["GET", "POST"])
 def getAll_createUser(request):
 
     if request.method == "GET":
-        data = UserSerializer(User.objects.all(), many=True)
-        return Response(data.data)
-    
+        try:
+            data = UserSerializer(User.objects.all(), many=True)
+            return Response(data.data)
+        except Exception as e:  
+            return JsonResponse({"message": str(e)})
+        
     if request.method == "POST":
-        new_user = User.objects.create(name=request.data['name'], 
-                                       email=request.data['email'], 
-                                       password=request.data['password'],
-                                       website=request.data['website'])
-        data = UserSerializer(new_user)
-        return JsonResponse({"message": "User Created!!"})
-
-
+        try:
+            new_user = User.objects.create(name=request.data['name'], 
+                                        email=request.data['email'], 
+                                        password=request.data['password'],
+                                        website=request.data['website'])
+            data = UserSerializer(new_user)
+            return JsonResponse({"message": "User Created!!"})
+        except Exception as e:  
+            return JsonResponse({"message": str(e)})
