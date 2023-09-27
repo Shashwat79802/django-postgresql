@@ -1,3 +1,6 @@
 ./django_postgres/venv
 ./.idea
 .vscode
+django_postgres/__pycache__
+application/__pycache__
+application/migrations/*

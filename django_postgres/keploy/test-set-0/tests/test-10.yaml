@@ -1,0 +1,52 @@
+version: api.keploy.io/v1beta2
+kind: Http
+name: test-10
+spec:
+    metadata: {}
+    req:
+        method: PUT
+        proto_major: 1
+        proto_minor: 1
+        url: http://127.0.0.1:8000/user/7a8eaa52-0f55-4aca-813c-5201d78d8fa5/
+        header:
+            Accept: '*/*'
+            Accept-Encoding: gzip, deflate, br
+            Connection: keep-alive
+            Content-Length: "219"
+            Content-Type: application/json
+            Host: 127.0.0.1:8000
+            Postman-Token: 81d3eb32-a3c2-4603-9214-e7fb90054db8
+            User-Agent: PostmanRuntime/7.33.0
+        body: |4-
+                {
+                    "id": "7a8eaa52-0f55-4aca-813c-5201d78d8fa5",
+                    "name": "Gupta shashwat",
+                    "email": "shashwat.gupta@example.com",
+                    "password": "shashwat123",
+                    "website": "www.shashwat.com"
+                }
+        body_type: ""
+    resp:
+        status_code: 200
+        header:
+            Allow: GET, PUT, DELETE, OPTIONS
+            Content-Length: "29"
+            Content-Type: application/json
+            Cross-Origin-Opener-Policy: same-origin
+            Date: Wed, 27 Sep 2023 20:24:26 GMT
+            Referrer-Policy: same-origin
+            Server: WSGIServer/0.2 CPython/3.10.12
+            Vary: Accept, Cookie
+            X-Content-Type-Options: nosniff
+            X-Frame-Options: DENY
+        body: '{"message": "User Updated!!"}'
+        body_type: ""
+        status_message: ""
+        proto_major: 0
+        proto_minor: 0
+    objects: []
+    assertions:
+        noise:
+            - header.Vary
+            - header.Date
+    created: 1695846270
